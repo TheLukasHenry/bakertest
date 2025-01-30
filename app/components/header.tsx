@@ -1,25 +1,25 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { Search, ShoppingCart, User } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { Search, ShoppingCart, User } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/theme-toggle'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu'
 
 function SearchBar() {
   const router = useRouter()
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState('')
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,7 +50,13 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between mb-6">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/placeholder.svg" alt="Baker Logo" width={40} height={40} className="rounded" />
+            <Image
+              src="/placeholder.svg"
+              alt="Baker Logo"
+              width={40}
+              height={40}
+              className="rounded"
+            />
             <span className="text-xl font-bold text-[#B31B1B]">Baker</span>
           </Link>
 
@@ -60,13 +66,20 @@ export default function Header() {
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:text-[#B31B1B]">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hover:text-[#B31B1B]"
+                >
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem asChild>
-                  <Link href="/account/profile" className="hover:text-[#B31B1B]">
+                  <Link
+                    href="/account/profile"
+                    className="hover:text-[#B31B1B]"
+                  >
                     Profile
                   </Link>
                 </DropdownMenuItem>
@@ -76,15 +89,25 @@ export default function Header() {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/account/settings" className="hover:text-[#B31B1B]">
+                  <Link
+                    href="/account/settings"
+                    className="hover:text-[#B31B1B]"
+                  >
                     Settings
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-[#B31B1B] hover:text-[#B31B1B]/90">Log out</DropdownMenuItem>
+                <DropdownMenuItem className="text-[#B31B1B] hover:text-[#B31B1B]/90">
+                  Log out
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button variant="ghost" size="icon" asChild className="hover:text-[#B31B1B]">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="hover:text-[#B31B1B]"
+            >
               <Link href="/cart" className="relative">
                 <ShoppingCart className="h-5 w-5" />
                 <Badge
@@ -101,4 +124,3 @@ export default function Header() {
     </header>
   )
 }
-

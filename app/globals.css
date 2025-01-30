@@ -84,3 +84,20 @@
 .bg-primary {
   @apply bg-[#B31B1B];
 }
+
+/* Dark mode specific styles */
+.dark .text-primary {
+  @apply text-[#ff4444];
+}
+
+.dark .border-primary {
+  @apply border-[#ff4444];
+}
+
+.dark .bg-primary {
+  @apply bg-[#ff4444];
+}
+
+.dark .btn-primary {
+  @apply bg-[#ff4444] text-white hover:bg-[#ff4444]/90;
+}
