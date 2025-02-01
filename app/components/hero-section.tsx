@@ -29,9 +29,15 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-[500px] flex items-center justify-center text-white">
-      <div className="absolute inset-0 bg-primary opacity-90"></div>
-      <div className="relative z-10 text-center">
+    <section
+      className="relative h-[500px] flex items-center justify-center text-white"
+      style={{ zIndex: 0 }}
+    >
+      <div
+        className="absolute inset-0 bg-primary opacity-90"
+        style={{ zIndex: 1 }}
+      ></div>
+      <div className="relative z-[2] text-center">
         <h1 className="text-4xl font-bold mb-4">{promoContent}</h1>
         <p className="text-xl mb-8">Upgrade your HVAC systems with Baker</p>
         <Button
@@ -42,7 +48,7 @@ export default function HeroSection() {
           Shop Now
         </Button>
       </div>
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 0 }}>
         {slides.map((slide, index) => (
           <Image
             key={index}
