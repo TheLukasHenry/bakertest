@@ -43,6 +43,7 @@ export default function HeroSection() {
         <Button
           size="lg"
           variant="interactive"
+          showArrow
           className="bg-white text-primary hover:bg-gray-100"
         >
           Shop Now

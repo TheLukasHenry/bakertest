@@ -71,7 +71,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <span>{children}</span>
             {showArrow && <ArrowRight />}
           </div>
-          <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-[#B31B1B] transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8]" />
+          <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-0 rounded-lg bg-[#B31B1B] transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8]" />
         </Comp>
       )
     }
