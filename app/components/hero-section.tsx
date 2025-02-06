@@ -42,7 +42,7 @@ export default function HeroSection() {
         <p className="text-xl mb-8">Upgrade your HVAC systems with Baker</p>
         <Button
           size="lg"
-          variant="secondary"
+          variant="interactive"
           className="bg-white text-primary hover:bg-gray-100"
         >
           Shop Now
