@@ -71,7 +71,7 @@ export default function Header() {
                   size="icon"
                   className="hover:text-[#B31B1B]"
                 >
-                  <User className="h-5 w-5" />
+                  <User className="h-5 w-5 text-foreground" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
@@ -109,7 +109,7 @@ export default function Header() {
               className="hover:text-[#B31B1B]"
             >
               <Link href="/cart" className="relative">
-                <ShoppingCart className="h-5 w-5" />
+                <ShoppingCart className="h-5 w-5 text-foreground" />
                 <Badge
                   variant="destructive"
                   className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-[#B31B1B]"
