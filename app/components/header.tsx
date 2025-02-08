@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock'
 
 function SearchBar() {
   const router = useRouter()
@@ -62,62 +63,89 @@ export default function Header() {
 
           <SearchBar />
 
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hover:text-[#B31B1B]"
-                >
-                  <User className="h-5 w-5 text-foreground" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/account/profile"
-                    className="hover:text-[#B31B1B]"
-                  >
-                    Profile
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/account/orders" className="hover:text-[#B31B1B]">
-                    Orders
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/account/settings"
-                    className="hover:text-[#B31B1B]"
-                  >
-                    Settings
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-[#B31B1B] hover:text-[#B31B1B]/90">
-                  Log out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button
-              variant="ghost"
-              size="icon"
-              asChild
-              className="hover:text-[#B31B1B]"
+          <div className="flex items-center">
+            <Dock
+              className="items-end"
+              magnification={50}
+              distance={100}
+              panelHeight={40}
             >
-              <Link href="/cart" className="relative">
-                <ShoppingCart className="h-5 w-5 text-foreground" />
-                <Badge
-                  variant="destructive"
-                  className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-[#B31B1B]"
-                >
-                  0
-                </Badge>
-              </Link>
-            </Button>
+              <DockItem className="aspect-square rounded-full">
+                <DockLabel>Theme</DockLabel>
+                <DockIcon>
+                  <ThemeToggle />
+                </DockIcon>
+              </DockItem>
+
+              <DockItem className="aspect-square rounded-full">
+                <DockLabel>Account</DockLabel>
+                <DockIcon>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:text-[#B31B1B]"
+                      >
+                        <User className="h-5 w-5 text-foreground" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem asChild>
+                        <Link
+                          href="/account/profile"
+                          className="hover:text-[#B31B1B]"
+                        >
+                          Profile
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link
+                          href="/account/orders"
+                          className="hover:text-[#B31B1B]"
+                        >
+                          Orders
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link
+                          href="/account/settings"
+                          className="hover:text-[#B31B1B]"
+                        >
+                          Settings
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem className="text-[#B31B1B] hover:text-[#B31B1B]/90">
+                        Log out
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </DockIcon>
+              </DockItem>
+
+              <DockItem className="aspect-square rounded-full">
+                <DockLabel>Cart</DockLabel>
+                <DockIcon>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="hover:text-[#B31B1B]"
+                  >
+                    <Link href="/cart" className="relative">
+                      <ShoppingCart className="h-5 w-5 text-foreground" />
+                      <Badge
+                        variant="destructive"
+                        className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-[#B31B1B]"
+                      >
+                        0
+                      </Badge>
+                    </Link>
+                  </Button>
+                </DockIcon>
+              </DockItem>
+            </Dock>
           </div>
         </div>
       </div>
