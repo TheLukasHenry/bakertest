@@ -63,7 +63,7 @@ export default function Header() {
 
           <SearchBar />
 
-          <div className="flex items-center">
+          <div className="flex items-center w-[200px] justify-end">
             <Dock
               className="items-end"
               magnification={50}
