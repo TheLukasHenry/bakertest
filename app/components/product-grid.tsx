@@ -9,14 +9,17 @@ import { useProducts } from '@/hooks/use-magento'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export default function ProductGrid() {
-  const { products, loading, error } = useProducts({
-    'searchCriteria[pageSize]': 8,
-    'searchCriteria[currentPage]': 1,
-    'searchCriteria[filter_groups][0][filters][0][field]': 'status',
-    'searchCriteria[filter_groups][0][filters][0][value]': '1',
-  })
+  const searchCriteria = {
+    'searchCriteria[pageSize]': '8',
+    'searchCriteria[currentPage]': '1',
+    'searchCriteria[filterGroups][0][filters][0][field]': 'status',
+    'searchCriteria[filterGroups][0][filters][0][value]': '1',
+    'searchCriteria[filterGroups][0][filters][0][conditionType]': 'eq',
+  }
 
-  if (error) {
+  const { products, loading, error } = useProducts(searchCriteria)
+
+  if (error && process.env.NODE_ENV === 'production') {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
         <p className="text-red-500">

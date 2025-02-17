@@ -7,6 +7,36 @@ import type {
   MagentoCustomer,
 } from '@/lib/types/magento'
 
+// Development mode fallback products
+const DEV_PRODUCTS = {
+  items: [
+    {
+      id: 1,
+      sku: 'HVAC-001',
+      name: 'Premium HVAC System',
+      price: 1999.99,
+      status: 1,
+      visibility: 1,
+      type_id: 'simple',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      media_gallery_entries: [],
+    },
+    {
+      id: 2,
+      sku: 'AC-001',
+      name: 'Advanced Air Conditioner',
+      price: 1499.99,
+      status: 1,
+      visibility: 1,
+      type_id: 'simple',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      media_gallery_entries: [],
+    },
+  ],
+}
+
 export const useProducts = (searchCriteria?: Record<string, any>) => {
   const [products, setProducts] = useState<MagentoProduct[]>([])
   const [loading, setLoading] = useState(true)
@@ -16,6 +46,12 @@ export const useProducts = (searchCriteria?: Record<string, any>) => {
     const fetchProducts = async () => {
       try {
         setLoading(true)
+        // In development, return mock data immediately
+        if (process.env.NODE_ENV === 'development') {
+          setProducts(DEV_PRODUCTS.items)
+          return
+        }
+
         const response = await magentoApi.products.getAll(searchCriteria)
         setProducts(response.items)
       } catch (err) {
@@ -28,7 +64,7 @@ export const useProducts = (searchCriteria?: Record<string, any>) => {
     }
 
     fetchProducts()
-  }, [searchCriteria])
+  }, []) // Remove searchCriteria from dependencies to prevent unnecessary rerenders
 
   return { products, loading, error }
 }
