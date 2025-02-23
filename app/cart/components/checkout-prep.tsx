@@ -1,16 +1,16 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { toast } from '@/components/ui/use-toast'
 
 export default function CheckoutPrep() {
   const router = useRouter()
-  const [zipCode, setZipCode] = useState("")
+  const [zipCode, setZipCode] = useState('')
   const [loading, setLoading] = useState(false)
 
   const validateAddress = async (e: React.FormEvent) => {
@@ -22,17 +22,19 @@ export default function CheckoutPrep() {
       await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulate API call
 
       // TODO: Implement security checks
-      console.log("Performing security checks and HSTS enforcement")
+      console.log('Performing security checks and HSTS enforcement')
 
       // TODO: Initialize Cloudflare Browser Insights
-      console.log("Initialize Cloudflare Browser Insights for performance monitoring")
+      console.log(
+        'Initialize Cloudflare Browser Insights for performance monitoring'
+      )
 
-      router.push("/checkout")
+      router.push('/checkout')
     } catch (error) {
       toast({
-        title: "Validation Error",
-        description: "Please check your shipping information and try again.",
-        variant: "destructive",
+        title: 'Validation Error',
+        description: 'Please check your shipping information and try again.',
+        variant: 'destructive',
       })
     } finally {
       setLoading(false)
@@ -56,7 +58,9 @@ export default function CheckoutPrep() {
                 required
                 pattern="[0-9]{5}"
               />
-              <p className="text-sm text-muted-foreground mt-1">Enter your ZIP code to check shipping availability</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Enter your ZIP code to check shipping availability
+              </p>
             </div>
             <div className="border-t pt-4">
               <div className="flex justify-between mb-2">
@@ -74,13 +78,12 @@ export default function CheckoutPrep() {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="bg-gray-50 p-6">
+        <CardFooter className="p-6 border-t">
           <Button className="w-full" type="submit" disabled={loading}>
-            {loading ? "Validating..." : "Proceed to Checkout"}
+            {loading ? 'Validating...' : 'Proceed to Checkout'}
           </Button>
         </CardFooter>
       </form>
     </Card>
   )
 }
-
