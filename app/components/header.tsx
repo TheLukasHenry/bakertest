@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Search, ShoppingCart, User } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -17,6 +17,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock'
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command'
 
 function SearchBar() {
   const router = useRouter()
@@ -34,7 +42,7 @@ function SearchBar() {
       <div className="relative">
         <Input
           type="search"
-          placeholder="Search products..."
+          placeholder="Search products... (⌘K)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full pl-10 border-gray-200 focus:border-[#B31B1B] focus:ring-[#B31B1B]"
@@ -46,6 +54,22 @@ function SearchBar() {
 }
 
 export default function Header() {
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  // Handle cmd+k keyboard shortcut
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener('keydown', down)
+    return () => document.removeEventListener('keydown', down)
+  }, [])
+
   return (
     <header className="border-b border-gray-200 dark:border-gray-800">
       <div className="container mx-auto px-4 py-4">
@@ -149,6 +173,42 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Search products..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem
+              onSelect={() => {
+                router.push('/hvac')
+                setOpen(false)
+              }}
+            >
+              <Search className="mr-2 h-4 w-4" />
+              HVAC Equipment
+            </CommandItem>
+            <CommandItem
+              onSelect={() => {
+                router.push('/parts')
+                setOpen(false)
+              }}
+            >
+              <Search className="mr-2 h-4 w-4" />
+              Parts & Accessories
+            </CommandItem>
+            <CommandItem
+              onSelect={() => {
+                router.push('/tools')
+                setOpen(false)
+              }}
+            >
+              <Search className="mr-2 h-4 w-4" />
+              Tools & Instruments
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
     </header>
   )
 }
